@@ -91,10 +91,10 @@ body::before{
 }
 .hero-banner-sword{
   position:absolute;top:-20px;left:50%;transform:translateX(-50%);
-  font-size:280px;opacity:.03;pointer-events:none;line-height:1;
+  font-size:280px;opacity: 0.14;pointer-events:none;line-height:1;
   animation:swordPulse 5s infinite;
 }
-@keyframes swordPulse{0%,100%{opacity:.03}50%{opacity:.06}}
+@keyframes swordPulse{0%,100%{opacity: 0.14}50%{opacity: 0.21}}
 
 .hero-title{font-family:var(--font-hd);font-size:clamp(40px,9vw,110px);letter-spacing:5px;line-height:1;margin-bottom:10px}
 .hero-title span{color:var(--red)}
