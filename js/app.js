@@ -162,17 +162,7 @@ function SettingsPanel({open,onClose,maxPerTeam,setMaxPerTeam,numTeams,setNumTea
       ),
 
       // Image spec info
-      React.createElement('div',{className:'setting-group'},
-        React.createElement('span',{className:'setting-label'},'📸 Image Specs'),
-        React.createElement('p',{className:'setting-note'},
-          'Place character images in the /images/ folder.\n\n'+
-          '• Format: JPG\n'+
-          '• Size: 400 × 500 px (portrait)\n'+
-          '• Name: {character_id}.jpg\n'+
-          '• Examples: goku.jpg, luffy.jpg, zeno.jpg\n\n'+
-          'All 50 character IDs are listed in characters.js'
-        )
-      )
+
     )
   );
 }
