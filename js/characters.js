@@ -418,6 +418,17 @@ const CHARACTERS = [
     winQuotes:["I fight to protect the people I love.","Rika — lend me your power.","I won't let anyone else get hurt."],
     loseQuotes:["I have to get stronger...","I'm sorry, Rika.","Not yet — not yet enough."]
   },
+  {
+    id:"mahoraga", name:"Eight-Handled Sword Divergent Sila Divine General Mahoraga", alias:"Mahoraga", series:"Jujutsu Kaisen",
+    tier:"S+", color:"#336633", emoji:"⚙️",
+    stats:{power:97,speed:90,durability:99,intelligence:60,technique:92,ki:0,haki:0,cursedEnergy:95,cosmicPower:70},
+    powerScale:8750000,
+    abilities:["Adaptation Wheel","Cursed Tool: Divine Sword","Infinite Adaptation","Anti-Cursed Energy","Shikigami Form"],
+    weakness:"Adaptation takes time — must survive the first encounter",
+    lore:"The most powerful shikigami of the Ten Shadows Technique. Never once been fully tamed. Its Adaptation ability allows it to develop a counter to any attack after being hit once — making prolonged battles increasingly hopeless for its opponent.",
+    winQuotes:["...","[The wheel turns.]","[Adaptation complete.]"],
+    loseQuotes:["[Wheel slows.]","[Processing...]","[Recalibrating.]"]
+  },
 
   // ═══════════════════════════════════════════
   // MY HERO ACADEMIA
@@ -594,6 +605,17 @@ const CHARACTERS = [
     lore:"The World's Strongest Man before Roger's era ended. His Devil Fruit could destroy the world. Even ill and near death he fought the entire Navy and never fell in battle.",
     winQuotes:["GURARARara! That tickled!","You fight with the spirit of a son.","The world trembles before Whitebeard!"],
     loseQuotes:["Grararara... impressive.","A father protects his family...","Marco..."]
+  },
+  {
+    id:"blackbeard", name:"Marshall D. Teach", alias:"Blackbeard", series:"One Piece",
+    tier:"S+", color:"#222266", emoji:"🌑",
+    stats:{power:96,speed:82,durability:95,intelligence:88,technique:88,ki:0,haki:90,cursedEnergy:0,cosmicPower:72},
+    powerScale:8850000,
+    abilities:["Yami Yami no Mi","Gura Gura no Mi","Darkness Absorption","Stolen Whitebeard Power","Conqueror's Haki"],
+    weakness:"Cannot use both Devil Fruits simultaneously at full power",
+    lore:"The only person in history to wield two Devil Fruits. Stole Whitebeard's Gura Gura no Mi immediately after his death. His Darkness nullifies all Devil Fruit powers — making him uniquely dangerous against the strongest fighters.",
+    winQuotes:["Zehahaha! Nothing can escape my darkness!","I've been waiting for this moment my whole life!","The era of Blackbeard has begun!"],
+    loseQuotes:["Zehaha... not yet...","A man's dream never dies!","I'll come back stronger — count on it."]
   }
 ];
 
