@@ -484,6 +484,69 @@ body::before{
 }
 .animate-in{animation:slideUp .5s var(--ease) forwards}
 
+/* ── FLOATING PROCEED BUTTON ── */
+.float-proceed {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 150;
+  animation: floatIn .4s var(--ease) forwards;
+}
+
+.float-proceed-btn {
+  font-family: var(--font-hd);
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding: 14px 28px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  box-shadow: 0 0 32px rgba(255,34,68,.6), 0 4px 20px rgba(0,0,0,.5);
+  transition: background .2s, transform .2s, box-shadow .2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.float-proceed-btn:hover {
+  background: #ff4060;
+  transform: translateY(-3px);
+  box-shadow: 0 0 48px rgba(255,34,68,.8), 0 8px 28px rgba(0,0,0,.6);
+}
+
+.float-proceed-btn .fp-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.2);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(16px) scale(.92); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media(max-width: 576px) {
+  .float-proceed {
+    bottom: 18px;
+    right: 18px;
+  }
+  .float-proceed-btn {
+    font-size: 15px;
+    padding: 12px 20px;
+  }
+}
+
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   .phase-tab{font-size:12px;padding:10px 4px}
