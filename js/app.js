@@ -657,101 +657,107 @@ function App(){
       ),
 
       // ── SELECT PHASE
-      phase==='select' && React.createElement('div',{className:'animate-in'},
+     phase==='select' && React.createElement(React.Fragment, null,
+  React.createElement('div',{className:'animate-in'},
 
-        // Top controls
-        React.createElement('div',{style:{display:'flex',gap:'8px',padding:'12px 20px',borderBottom:'1px solid var(--border)',flexWrap:'wrap',alignItems:'center',justifyContent:'flex-end'}},
-          React.createElement('button',{className:'btn-sm',onClick:randomize},'🎲 Random'),
-          React.createElement('button',{className:'btn-sm',onClick:clearTeams},'🗑 Clear'),
-          React.createElement('button',{
-            className:'btn-sm cyan',
-            disabled:!canBattle,
-            style:{opacity:canBattle?1:.4},
-            onClick:()=>canBattle&&setPhase('confirm')
-          },'Confirm Teams →')
-        ),
+    // Top controls
+    React.createElement('div',{style:{display:'flex',gap:'8px',padding:'12px 20px',borderBottom:'1px solid var(--border)',flexWrap:'wrap',alignItems:'center',justifyContent:'flex-end'}},
+      React.createElement('button',{className:'btn-sm',onClick:randomize},'🎲 Random'),
+      React.createElement('button',{className:'btn-sm',onClick:clearTeams},'🗑 Clear'),
+      React.createElement('button',{
+        className:'btn-sm cyan',
+        disabled:!canBattle,
+        style:{opacity:canBattle?1:.4},
+        onClick:()=>canBattle&&setPhase('confirm')
+      },'Confirm Teams →')
+    ),
 
-        // Character grid
-        React.createElement('div',{className:'container-fluid py-3 px-3'},
-          filtered.length===0
-            ? React.createElement('div',{className:'text-center py-5',style:{color:'var(--gray)',fontFamily:'var(--font-hd)',fontSize:'24px',letterSpacing:'2px'}},'NO CHARACTERS FOUND')
-            : React.createElement('div',{className:'row g-2'},
-                filtered.map(char=>{
-                  const inTeamIdx = teams.findIndex(t=>t.some(c=>c.id===char.id));
-                  const allFull = teams.slice(0,numTeams).every(t=>t.length>=maxPerTeam);
-                  const isDisabled = inTeamIdx<0 && allFull;
-                  let cardCls = 'char-card h-100';
-                  if(inTeamIdx>=0) cardCls+=` ${TEAM_SEL_CLS[inTeamIdx]}`;
-                  else if(isDisabled) cardCls+=' disabled';
+    // Character grid
+    React.createElement('div',{className:'container-fluid py-3 px-3'},
+      filtered.length===0
+        ? React.createElement('div',{className:'text-center py-5',style:{color:'var(--gray)',fontFamily:'var(--font-hd)',fontSize:'24px',letterSpacing:'2px'}},'NO CHARACTERS FOUND')
+        : React.createElement('div',{className:'row g-2'},
+            filtered.map(char=>{
+              const inTeamIdx = teams.findIndex(t=>t.some(c=>c.id===char.id));
+              const allFull = teams.slice(0,numTeams).every(t=>t.length>=maxPerTeam);
+              const isDisabled = inTeamIdx<0 && allFull;
+              let cardCls = 'char-card h-100';
+              if(inTeamIdx>=0) cardCls+=` ${TEAM_SEL_CLS[inTeamIdx]}`;
+              else if(isDisabled) cardCls+=' disabled';
 
-                  return React.createElement('div',{key:char.id,className:'col-6 col-sm-4 col-md-3 col-lg-2'},
-                    React.createElement('div',{className:cardCls},
-                      // Glow bar
-                      React.createElement('div',{className:'char-glow-bar',style:{background:char.color}}),
-                      // Selection badge
-                      inTeamIdx>=0 && React.createElement('span',{
-                        className:'char-sel-badge',
-                        style:{display:'block',background:TEAM_COLORS[inTeamIdx],color:inTeamIdx===2?'#000':'#fff'}
-                      },TEAM_NAMES[inTeamIdx].replace('TEAM ','')),
-
-                      // Image + emoji overlay
-                      React.createElement('div',{className:'char-img-wrap'},
-                        React.createElement('img',{src:`images/${char.id}.jpg`,alt:char.name,onError:e=>e.target.style.display='none'}),
-                        React.createElement('div',{className:'char-img-fallback'}),
-                        React.createElement('span',{className:'char-emoji-overlay'},char.emoji),
-                        React.createElement('div',{className:'char-img-overlay'})
-                      ),
-
-                      // Card body
-                      React.createElement('div',{className:'char-body'},
-                        React.createElement('div',{className:'char-series-lbl'},char.series),
-                        React.createElement('div',{className:'char-name'},char.name),
-                        React.createElement('div',{className:'char-meta'},
-                          React.createElement(TierBadge,{tier:char.tier}),
-                          React.createElement('span',{className:'char-score'},'⚡'+(char.powerScale/1000000).toFixed(1)+'M')
-                        ),
-                        React.createElement(PowerBar,{value:Math.round(char.powerScale/100000),color:char.color}),
-
-                        // Action buttons
-                        React.createElement('div',{className:'char-actions'},
-                          React.createElement('button',{className:'btn-sm',onClick:()=>setViewChar(char)},'Info'),
-                          // Team buttons — clicking selected team removes character
-                          Array.from({length:numTeams},(_,ti)=>{
-                            const inThis=teams[ti].some(c=>c.id===char.id);
-                            const inOther=inTeamIdx>=0&&inTeamIdx!==ti;
-                            const full=teams[ti].length>=maxPerTeam&&!inThis;
-                            if(inOther) return null;
-                            return React.createElement('button',{
-                              key:ti,
-                              className:'btn-sm',
-                              style:{
-                                borderColor:TEAM_COLORS[ti],
-                                color:TEAM_COLORS[ti],
-                                background:inThis?`${TEAM_COLORS[ti]}22`:'none',
-                                opacity:(!inThis&&full)?.35:1,
-                                cursor:(!inThis&&full)?'not-allowed':'pointer'
-                              },
-                              disabled:!inThis&&full,
-                              onClick:()=>toggleTeam(char,ti)
-                            }, inThis?`✓ T${ti+1}`:`T${ti+1}`)
-                          })
-                        )
-                      )
+              return React.createElement('div',{key:char.id,className:'col-6 col-sm-4 col-md-3 col-lg-2'},
+                React.createElement('div',{className:cardCls},
+                  React.createElement('div',{className:'char-glow-bar',style:{background:char.color}}),
+                  inTeamIdx>=0 && React.createElement('span',{
+                    className:'char-sel-badge',
+                    style:{display:'block',background:TEAM_COLORS[inTeamIdx],color:inTeamIdx===2?'#000':'#fff'}
+                  },TEAM_NAMES[inTeamIdx].replace('TEAM ','')),
+                  React.createElement('div',{className:'char-img-wrap'},
+                    React.createElement('img',{src:`images/${char.id}.jpg`,alt:char.name,onError:e=>e.target.style.display='none'}),
+                    React.createElement('div',{className:'char-img-fallback'}),
+                    React.createElement('span',{className:'char-emoji-overlay'},char.emoji),
+                    React.createElement('div',{className:'char-img-overlay'})
+                  ),
+                  React.createElement('div',{className:'char-body'},
+                    React.createElement('div',{className:'char-series-lbl'},char.series),
+                    React.createElement('div',{className:'char-name'},char.name),
+                    React.createElement('div',{className:'char-meta'},
+                      React.createElement(TierBadge,{tier:char.tier}),
+                      React.createElement('span',{className:'char-score'},'⚡'+(char.powerScale/1000000).toFixed(1)+'M')
+                    ),
+                    React.createElement(PowerBar,{value:Math.round(char.powerScale/100000),color:char.color}),
+                    React.createElement('div',{className:'char-actions'},
+                      React.createElement('button',{className:'btn-sm',onClick:()=>setViewChar(char)},'Info'),
+                      Array.from({length:numTeams},(_,ti)=>{
+                        const inThis=teams[ti].some(c=>c.id===char.id);
+                        const inOther=inTeamIdx>=0&&inTeamIdx!==ti;
+                        const full=teams[ti].length>=maxPerTeam&&!inThis;
+                        if(inOther) return null;
+                        return React.createElement('button',{
+                          key:ti,
+                          className:'btn-sm',
+                          style:{
+                            borderColor:TEAM_COLORS[ti],
+                            color:TEAM_COLORS[ti],
+                            background:inThis?`${TEAM_COLORS[ti]}22`:'none',
+                            opacity:(!inThis&&full)?.35:1,
+                            cursor:(!inThis&&full)?'not-allowed':'pointer'
+                          },
+                          disabled:!inThis&&full,
+                          onClick:()=>toggleTeam(char,ti)
+                        }, inThis?`✓ T${ti+1}`:`T${ti+1}`)
+                      })
                     )
-                  );
-                })
-              )
-        ),
+                  )
+                )
+              );
+            })
+          )
+    ),
 
-        // Bottom proceed button
-        React.createElement('div',{className:'text-center py-4'},
-          React.createElement('button',{
-            className:'btn-battle',
-            disabled:!canBattle,
-            onClick:()=>canBattle&&setPhase('confirm')
-          }, canBattle?'⚔ CONFIRM TEAMS →':'Select Fighters First')
-        )
-      ),
+    // Bottom proceed button
+    React.createElement('div',{className:'text-center py-4'},
+      React.createElement('button',{
+        className:'btn-battle',
+        disabled:!canBattle,
+        onClick:()=>canBattle&&setPhase('confirm')
+      }, canBattle?'⚔ CONFIRM TEAMS →':'Select Fighters First')
+    )
+  ),
+
+  // ── FLOATING PROCEED BUTTON (shows as soon as any fighter is selected)
+  canBattle && React.createElement('div',{className:'float-proceed'},
+    React.createElement('button',{
+      className:'float-proceed-btn',
+      onClick:()=>setPhase('confirm')
+    },
+      '⚔ Confirm Teams',
+      React.createElement('span',{className:'fp-count'},
+        teams.slice(0,numTeams).reduce((sum,t)=>sum+t.length,0)
+      )
+    )
+  )
+),
 
       // ── CONFIRM PHASE
       phase==='confirm' && React.createElement(ConfirmPage,{
