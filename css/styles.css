@@ -503,3 +503,7 @@ body::before{
   .battle-card{max-width:110px;min-width:80px}
   .bc-emoji{font-size:26px}
 }
+@media(max-width: 576px){
+  .btn-nav .btn-text{ display: none;}
+  .btn-nav{ padding: 7px 11px; font-size: 18px; letter-spacing: 0; }
+}
