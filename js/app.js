@@ -566,11 +566,17 @@ function App(){
           React.createElement('button',{
             className:`btn-nav ${page==='battle'?'active':''}`,
             onClick:()=>setPage('battle')
-          },'⚔ Battle'),
+          },
+            '⚔ ',
+            React.createElement('span',{className:'btn-text'},'Battle')
+          ),
           React.createElement('button',{
             className:`btn-nav ${page==='scale'?'gold active':'gold'}`,
             onClick:()=>setPage('scale')
-          },'📊 Scale'),
+          },
+            '📊 ',
+            React.createElement('span',{className:'btn-text'},'Scale')
+          ),
           React.createElement('button',{
             className:'btn-nav settings-btn',
             onClick:()=>setSettings(true),
